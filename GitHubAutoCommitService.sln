@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubAutoCommitService", "GitHubAutoCommitService\GitHubAutoCommitService.csproj", "{5A3FD21A-EC9C-44B6-AA25-A517528C4038}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubAutoCommitServiceTests", "GitHubAutoCommitServiceTests\GitHubAutoCommitServiceTests.csproj", "{2C71D92A-EAF7-4199-9725-C6C481C2BBE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A3FD21A-EC9C-44B6-AA25-A517528C4038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A3FD21A-EC9C-44B6-AA25-A517528C4038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A3FD21A-EC9C-44B6-AA25-A517528C4038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A3FD21A-EC9C-44B6-AA25-A517528C4038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C71D92A-EAF7-4199-9725-C6C481C2BBE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C71D92A-EAF7-4199-9725-C6C481C2BBE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C71D92A-EAF7-4199-9725-C6C481C2BBE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C71D92A-EAF7-4199-9725-C6C481C2BBE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4071F86-7A42-4D0D-B7E9-38489F80FBFC}
+	EndGlobalSection
+EndGlobal
