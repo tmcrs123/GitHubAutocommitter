@@ -1,6 +1,6 @@
 ## What
 
-A simple windows service that runs in the background and push a commit to git.
+A simple windows service that runs in the background and pushes a commit to git.
 
 There are many use cases for this, mine was "I want my notes to be synced automatically somewhere and I don't want to pay for something like Obsidian".
 
