@@ -7,6 +7,7 @@ namespace GitHubAutoCommitService
     {
         private readonly ILogger<Worker> _logger;
         private readonly IConfiguration _configuration;
+        private readonly TimeSpan interval = TimeSpan.FromHours(3);
 
         public Worker(ILogger<Worker> logger, IConfiguration configuration)
         {
@@ -14,25 +15,40 @@ namespace GitHubAutoCommitService
             _configuration = configuration;
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-             _logger.LogInformation("GitHub AutoCommitter Service started at: {time}", DateTimeOffset.Now);
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                Run();
 
+                await Task.Delay(interval, stoppingToken);
+            }
+        }
+
+        protected void Run()
+        {
+            _logger.LogInformation("GitHub AutoCommitter running, started at: {time}", DateTimeOffset.Now);
+            
             var repoPath = _configuration.GetSection("GitRepoPath").Value;
             var historyFilePath = _configuration.GetSection("HistoryFilePath").Value;
 
             DateTime? lastRun = GetLastRun(historyFilePath);
 
-            if (repoPath is null || lastRun is null)
+            if (repoPath is null)
             {
-                _logger.LogWarning($"Encountered a null value for path or lastRun! Path: {repoPath}; LastRun: {lastRun}");
+                throw new InvalidDataException("Unable to find path to git repo");
+            }
+
+            if (lastRun is null)
+            {
+                _logger.LogWarning($"Encountered a null value for lastRun! LastRun: {lastRun}");
                 _logger.LogInformation("Immediately committing");
             }
 
             if (WasLastRunInThePast24Hours(lastRun))
             {
                 _logger.LogInformation("Last run was within the past 24 hours, skipping");
-                return Task.CompletedTask;
+                return;
             }
 
             try
@@ -43,13 +59,11 @@ namespace GitHubAutoCommitService
                 WriteToFile(historyFilePath);
 
                 _logger.LogInformation("Committed successfully and updated last run date.");
-                return Task.CompletedTask;
 
             }
             catch (Exception e)
             {
                 _logger.LogError(e, "Error when trying to commit to Git Hub.");
-                return Task.CompletedTask;
             }
         }
 

@@ -64,7 +64,7 @@ namespace GitHubAutoCommitServiceTests
 
             var exception = await Record.ExceptionAsync(() => testWorker.StartAsync(default));
 
-            Assert.Null(exception);
+            Assert.NotNull(exception);
             Assert.True(testWorker.CommitCounter == 0);
         }
 
